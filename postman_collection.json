@@ -1,0 +1,219 @@
+{
+  "info": {
+    "name": "Court Data Fetcher API",
+    "description": "API endpoints for Court Data Fetcher application",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3001",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/health",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "health"]
+        },
+        "description": "Check if the server is running"
+      },
+      "response": []
+    },
+    {
+      "name": "Fetch Case - Civil Appeal",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"caseType\": \"Civil Appeal\",\n  \"caseNumber\": \"12345\",\n  \"year\": 2024\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/fetch-case",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "fetch-case"]
+        },
+        "description": "Fetch details for a Civil Appeal case"
+      },
+      "response": []
+    },
+    {
+      "name": "Fetch Case - Criminal Appeal",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"caseType\": \"Criminal Appeal\",\n  \"caseNumber\": \"67890\",\n  \"year\": 2023\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/fetch-case",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "fetch-case"]
+        },
+        "description": "Fetch details for a Criminal Appeal case"
+      },
+      "response": []
+    },
+    {
+      "name": "Fetch Case - Writ Petition",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"caseType\": \"Writ Petition\",\n  \"caseNumber\": \"11111\",\n  \"year\": 2024\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/fetch-case",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "fetch-case"]
+        },
+        "description": "Fetch details for a Writ Petition"
+      },
+      "response": []
+    },
+    {
+      "name": "Fetch Case - Invalid Input (Missing Fields)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"caseType\": \"Civil Appeal\",\n  \"caseNumber\": \"\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/fetch-case",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "fetch-case"]
+        },
+        "description": "Test error handling with missing fields"
+      },
+      "response": []
+    },
+    {
+      "name": "Fetch Case - Invalid Year",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"caseType\": \"Civil Appeal\",\n  \"caseNumber\": \"12345\",\n  \"year\": 1800\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/fetch-case",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "fetch-case"]
+        },
+        "description": "Test error handling with invalid year"
+      },
+      "response": []
+    },
+    {
+      "name": "Get Query History (Last 10)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/queries?limit=10",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "queries"],
+          "query": [
+            {
+              "key": "limit",
+              "value": "10"
+            }
+          ]
+        },
+        "description": "Get the last 10 queries from database"
+      },
+      "response": []
+    },
+    {
+      "name": "Get Query History (Last 5)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/queries?limit=5",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "queries"],
+          "query": [
+            {
+              "key": "limit",
+              "value": "5"
+            }
+          ]
+        },
+        "description": "Get the last 5 queries from database"
+      },
+      "response": []
+    },
+    {
+      "name": "Get Specific Case by ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/case/1",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "case", "1"]
+        },
+        "description": "Get a specific case by its database ID"
+      },
+      "response": []
+    },
+    {
+      "name": "Download Judgment",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/download-judgment?url=https://example.com/judgment.pdf",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "download-judgment"],
+          "query": [
+            {
+              "key": "url",
+              "value": "https://example.com/judgment.pdf"
+            }
+          ]
+        },
+        "description": "Download a judgment PDF by URL"
+      },
+      "response": []
+    }
+  ]
+}
